@@ -20,7 +20,7 @@ class OhmMeterPublisher:
             topicname: topic name to be published
             serialport: the path to device file of RM3545 (e.g. "/dev/ttyACM0")
             baudrate: baudrate of serial communication (default: 119200)
-            timeout: timeout of serial communication (default: 0.01秒)
+            timeout: timeout of serial communication (default: 0.01 s)
             nodename: node's name (Default: OhmMeter)
         """
         self.ohmmeter = OhmMeter( serialport, baudrate=baudrate, timeout=timeout)
