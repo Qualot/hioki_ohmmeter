@@ -1,4 +1,4 @@
-# hioki_ohmmeter
+# hioki_ohmmeter [in preparation]
 Unofficial ROS driver of hioki ohmmeter (currently using RM3545)
 
 # Official USB driver and Manual (in Japanese)
