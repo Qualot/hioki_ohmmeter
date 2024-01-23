@@ -34,11 +34,11 @@ class OhmMeterPublisher:
         #self.ohmmeter.__del__()
         del self.ohmmeter
 
-    def publish(self):
+    def publish(self, timeout):
         """
         publish
         """
         publishdata = OhmMeterData()
-        publishdata.data = self.ohmmeter.read()
+        publishdata.data = float(self.ohmmeter.read(timeout))
         publishdata.header.stamp = rospy.Time.now()
         self.publisher.publish(publishdata)
