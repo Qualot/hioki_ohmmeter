@@ -67,11 +67,11 @@ add_message_files(
 #   Action2.action
 # )
 
-## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#   DEPENDENCIES
-#   std_msgs
-# )
+# Generate added messages and services with any dependencies listed here
+generate_messages(
+  DEPENDENCIES
+  std_msgs
+)
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -102,11 +102,14 @@ add_message_files(
 ## LIBRARIES: libraries you create in this project that dependent projects also need
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
+# catkin_package(
+# #  INCLUDE_DIRS include
+# #  LIBRARIES hioki_ohmmeter
+# #  CATKIN_DEPENDS roscpp rospy std_msgs
+# #  DEPENDS system_lib
+# )
 catkin_package(
-#  INCLUDE_DIRS include
-#  LIBRARIES hioki_ohmmeter
-#  CATKIN_DEPENDS roscpp rospy std_msgs
-#  DEPENDS system_lib
+  CATKIN_DEPENDS message_runtime message_generation rospy std_msgs
 )
 
 ###########
