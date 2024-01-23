@@ -1,5 +1,13 @@
-# hioki_ohmmeter [in preparation]
+# hioki_ohmmeter
 Unofficial ROS driver of hioki ohmmeter (currently using RM3545)
+
+# usage
+```
+ # to print data to standard output
+ rosrun hioki_ohmmeter print.py <serial port>
+ # to publish data to ROS network
+ rosrun hioki_ohmmeter publish.py <serial port>
+```
 
 # Official USB driver and Manual (in Japanese)
 https://www.hioki.co.jp/jp/support/versionup/detail/?downloadid=1094
