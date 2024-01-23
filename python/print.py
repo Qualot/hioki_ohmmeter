@@ -7,6 +7,8 @@ import sys
 
 from ohmmeter import OhmMeter
 
+Timeout_default = 1
+
 if __name__=="__main__":
 
     if len( sys.argv ) < 2:
@@ -24,9 +26,14 @@ if __name__=="__main__":
         rate = 10
     dt = 1.0 / rate
 
+
+    a.sendMsg((":INIT:CONT ON"))
+
     try:
         while True:
-            print( str(a.read()) )
+            #print( str(a.read()) )
+            print( str(a.SendQueryMsg(":FETCh?", Timeout_default)) )
             time.sleep(dt)
     except KeyboardInterrupt:
+        a.sendMsg((":INIT:CONT OFF"))
         del a
