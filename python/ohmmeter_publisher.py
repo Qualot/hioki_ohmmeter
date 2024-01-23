@@ -12,7 +12,7 @@ class OhmMeterPublisher:
     The class to publish the output of HIOKI RM3545 
     """
 
-    def __init__( self, topicname, serialport, baudrate = 119200, timeout = 0.01, nodename = "OhmMeter"):
+    def __init__( self, topicname, serialport, baudrate = 115200, timeout = 0.01, nodename = "OhmMeter"):
         """
         Constructor
 
