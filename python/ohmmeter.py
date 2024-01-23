@@ -33,16 +33,29 @@ class OhmMeter(object):
         """
         self.serdev.close()
 
-    def read(self):
+    def start_measure(self):
+        """
+        start the free-run mode
+        """
+        self.sendMsg((":INIT:CONT ON"))
+
+    def stop_measure(self):
+        """
+        start the free-run mode
+        """
+        self.sendMsg((":INIT:CONT OFF"))
+
+    def read(self, timeout):
         """
         read the output of the ohmmeter
         """
-        self.serdev.write(b"D:FETCh?\r\n")
-        string = self.serdev.read(10)
+        #self.serdev.write(b"D:FETCh?\r\n")
+        #string = self.serdev.read(10)
+        string = self.SendQueryMsg(":FETCh?", timeout)
         try:
-            return float(string[:-4])
+            return float(string)
         except ValueError:
-            return 0
+            return 1e+30
 
     #Command sending
     def sendMsg(self, strMsg):

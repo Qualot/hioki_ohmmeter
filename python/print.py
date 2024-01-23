@@ -27,13 +27,13 @@ if __name__=="__main__":
     dt = 1.0 / rate
 
 
-    a.sendMsg((":INIT:CONT ON"))
+    a.start_measure()
 
     try:
         while True:
-            #print( str(a.read()) )
-            print( str(a.SendQueryMsg(":FETCh?", Timeout_default)) )
+            #print( str(a.SendQueryMsg(":FETCh?", Timeout_default)))
+            print( float(a.read(Timeout_default)))
             time.sleep(dt)
     except KeyboardInterrupt:
-        a.sendMsg((":INIT:CONT OFF"))
+        a.stop_measure()
         del a
