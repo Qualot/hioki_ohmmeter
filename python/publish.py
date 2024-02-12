@@ -10,14 +10,14 @@ Timeout_default = 1
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print("publish force data read from imada forcegauge")
-        print("usage:program <serial port> <output topic (optional, default:ForceGauge)>")
+        print("publish resistance data read from hioki ohmmeter")
+        print("usage:program <serial port> <output topic (optional, default:OhmMeter)>")
         sys.exit(0)
 
     if len(sys.argv) > 2:
         topicname = sys.argv[2]
     else:
-        topicname = "ForceGauge"
+        topicname = "OhmMeter"
 
     a = OhmMeterPublisher(topicname, sys.argv[1])
     a.ohmmeter.start_measure()
