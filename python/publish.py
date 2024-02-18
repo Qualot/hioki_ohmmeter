@@ -3,23 +3,25 @@
 
 import rospy
 from ohmmeter_publisher import OhmMeterPublisher
-import time
 import sys
+from absl import app
+from absl import flags
 
 Timeout_default = 1
 
-if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        print("publish resistance data read from hioki ohmmeter")
-        print("usage:program <serial port> <output topic (optional, default:OhmMeter)>")
-        sys.exit(0)
+FLAGS = flags.FLAGS
+flags.DEFINE_string("serial_port", "/dev/ohmmeter0", "Serial port")
+flags.DEFINE_string("output_topic", "OhmMeter", "Output topic")
 
-    if len(sys.argv) > 2:
-        topicname = sys.argv[2]
-    else:
-        topicname = "OhmMeter"
+def main(argv):
+    if FLAGS.serial_port is None:
+        print("Serial port not provided. Usage: program --serial_port=<serial port> [--output_topic=<output topic>]")
+        sys.exit(1)
 
-    a = OhmMeterPublisher(topicname, sys.argv[1])
+    print(f"Serial port: {FLAGS.serial_port}")
+    print(f"Output topic: {FLAGS.output_topic}")
+
+    a = OhmMeterPublisher(FLAGS.output_topic, FLAGS.serial_port)
     a.ohmmeter.start_measure()
 
     try:
@@ -32,3 +34,6 @@ if __name__ == "__main__":
         a.ohmmeter.stop_measure()
         del a
         sys.exit(0)
+
+if __name__ == "__main__":
+    app.run(main)
